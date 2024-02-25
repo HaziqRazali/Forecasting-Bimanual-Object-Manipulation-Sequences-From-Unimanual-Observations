@@ -1,0 +1,35 @@
+baseline
+- MLP is used not relative to the object centroid
+1) Non Recurrent Graph(half_body, objects, missing_object)
+2) remaining_joints = MLP(half_body_node)
+
+grabnet
+1) f1 = subtract obj_xyz by obj_pos
+2) f2 = concatenate [f1, half_body]
+3) remaining_joints = MLP(f2) + obj_pos
+
+components
+- components specific to the project
+
+
+
+v1
+- grabnet predict finger joints
+- grabnet predict missing arm given masked data where the data has been xy centered
+- why did this detached version not work ... ? its probably working as best as it can
+  - wrists are still not strongly attached to the object
+  - another problem is that it can potentially overfit - because the grab_net receives the novel output from the decoder where the markers diverge after some frames
+
+v2
+- 
+
+v2 ( in old folder)
+- grabnet predict wrist** and finger joints given the xyz centered object
+- grabnet predict missing arm* given masked data where the data has been xy centered
+- not good because when it creates extreme wrist bends when i replace the wrist portion of * with **
+  - current results still show the wrist drifting apart from the objects because of the overwhelming decoder losses so retrain the detached version
+
+v3 (in old folder)
+- grabnet predict wrist* and finger joints given the xyz centered object
+- grabnet predict missing arm given masked data where the data has been xy centered and where the wrists have been filled in by *
+  - build this detached version

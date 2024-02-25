@@ -1,0 +1,2 @@
+
+python convert_to_mmm.py --result_root "/home/haziq/Forecasting-Bimanual-Object-Manipulation-Sequences-From-Unimanual-Observations/results/" --result_name "unimanual2bimanual/AAAI2024/kit_mocap/joint/"
